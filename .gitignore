@@ -1,0 +1,23 @@
+# ROS2
+build/
+install/
+log/
+
+# Python
+__pycache__/
+*.pyc
+
+# VSCode
+.vscode/
+
+# Linux
+*.swp
+.DS_Store
+
+# Docker
+*.log
+docker/.env
+
+# remove the ac-slam sim
+/src/multi-agent-system-AC-SLAM
+

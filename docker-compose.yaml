@@ -1,0 +1,45 @@
+version: "3.9"
+
+services:
+  robot:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+
+    container_name: ac-slam 
+    network_mode: host
+    user: "1000:1000"
+
+    privileged: true
+    group_add:
+      - dialout
+      - video
+      - "${I2C_GID:-988}"
+
+    environment:
+      - ROS_DOMAIN_ID=42
+      - RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+      #- DISPLAY=${DISPLAY}
+
+    volumes:
+      # Source code (live editing during development)
+      - ./src:/workspace/src:rw
+
+      # Maps directory (persistent across container restarts)
+      - ./maps:/workspace/maps:rw
+
+      # Build artifacts (persistent across container restarts)
+      - ./build:/workspace/build:rw
+      - ./install:/workspace/install:rw
+      - ./log:/workspace/log:rw
+
+      # Entrypoint script (mount for live editing without rebuild)
+      #- ./scripts/entrypoint.sh:/entrypoint.sh:ro
+
+
+    restart: unless-stopped
+    init: true
+    stdin_open: true
+    tty: true
+
+    #command: entrypoint.sh 
