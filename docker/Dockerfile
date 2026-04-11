@@ -45,12 +45,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Install ROS2 packages required for industrial mobile robot
 RUN apt-get update && apt-get install -y --no-install-recommends \
     # Core ROS2 tools
-    ros-humble-rqt \
-    ros-humble-rqt-common-plugins \
-    ros-humble-rviz2 \
     ros-humble-robot-state-publisher \
     ros-humble-joint-state-publisher \
-    ros-humble-xacro \
+    
     \
     # TF2 (required for localization)
     ros-humble-tf2-ros \
@@ -76,29 +73,16 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     \
     # Teleop
     ros-humble-teleop-twist-keyboard \
-    ros-humble-teleop-twist-joy \
-    ros-humble-joy-linux \
     \
     # Sensors
     ros-humble-laser-filters \
     ros-humble-laser-geometry \
     \
-    # Camera/Image transport
-    ros-humble-image-transport \
-    ros-humble-image-transport-plugins \
-    ros-humble-cv-bridge \
-    ros-humble-vision-opencv \
-    ros-humble-depth-image-proc \
-    ros-humble-image-proc \
-    \
-    # Web video server
-    ros-humble-web-video-server \
-    \
     # Diagnostics
     ros-humble-diagnostic-updater \
     ros-humble-diagnostic-aggregator \
     \
-    # CycloneDDS
+    # fastrtps 
     ros-humble-rmw-fastrtps-cpp \
     \
     # ROSBridge Suite
