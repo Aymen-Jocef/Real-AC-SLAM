@@ -70,18 +70,18 @@ class OdometryNode(Node):
         odom_trans = TransformStamped()
         odom_trans.header.stamp = current_time.to_msg()
         odom_trans.header.frame_id = 'odom'
-        odom_trans.child_frame_id = 'base_link'
+        odom_trans.child_frame_id = 'base_footprint'
         odom_trans.transform.translation.x = self.x
         odom_trans.transform.translation.y = self.y
         odom_trans.transform.translation.z = 0.0
         odom_trans.transform.rotation = Quaternion(x=quat[0], y=quat[1], z=quat[2], w=quat[3])
-       # self.tf_broadcaster.sendTransform(odom_trans)
+#        self.tf_broadcaster.sendTransform(odom_trans)
 
         # Publish odometry
         odom_msg = Odometry()
         odom_msg.header.stamp = current_time.to_msg()
         odom_msg.header.frame_id = 'odom'
-        odom_msg.child_frame_id = 'base_link'
+        odom_msg.child_frame_id = 'base_footprint'
         odom_msg.pose.pose.position.x = self.x
         odom_msg.pose.pose.position.y = self.y
         odom_msg.pose.pose.position.z = 0.0
