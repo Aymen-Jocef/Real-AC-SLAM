@@ -60,7 +60,7 @@ class SerialBridgeNode(Node):
                 self.get_logger().warn(f"Ignoring corrupted RPMs: L={rpm_l:.2f} R={rpm_r:.2f}")
                 return
 
-            self.get_logger().info(f"L={rpm_l:7.2f} rpm | R={rpm_r:7.2f} rpm")
+            #self.get_logger().info(f"L={rpm_l:7.2f} rpm | R={rpm_r:7.2f} rpm")
             self.left_rpm_pub.publish(Float64(data=rpm_l))
             self.right_rpm_pub.publish(Float64(data=rpm_r))
 

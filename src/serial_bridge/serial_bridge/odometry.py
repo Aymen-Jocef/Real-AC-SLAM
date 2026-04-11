@@ -59,9 +59,9 @@ class OdometryNode(Node):
         self.theta += delta_theta
 
         # Print odometry values
-        self.get_logger().info(
-            f"[ODOM] x: {self.x:.3f}, y: {self.y:.3f}, theta: {self.theta:.3f}, vx: {vx:.3f}, vth: {vth:.3f}"
-        )
+   #     self.get_logger().info(
+   #         f"[ODOM] x: {self.x:.3f}, y: {self.y:.3f}, theta: {self.theta:.3f}, vx: {vx:.3f}, vth: {vth:.3f}"
+   #     )
 
         # Create quaternion from yaw
         quat = tf_transformations.quaternion_from_euler(0, 0, self.theta)
@@ -75,7 +75,7 @@ class OdometryNode(Node):
         odom_trans.transform.translation.y = self.y
         odom_trans.transform.translation.z = 0.0
         odom_trans.transform.rotation = Quaternion(x=quat[0], y=quat[1], z=quat[2], w=quat[3])
-        self.tf_broadcaster.sendTransform(odom_trans)
+       # self.tf_broadcaster.sendTransform(odom_trans)
 
         # Publish odometry
         odom_msg = Odometry()

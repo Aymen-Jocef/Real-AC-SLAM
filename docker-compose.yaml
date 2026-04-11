@@ -34,7 +34,7 @@ services:
       - ./log:/workspace/log:rw
 
       # Entrypoint script (mount for live editing without rebuild)
-      #- ./scripts/entrypoint.sh:/entrypoint.sh:ro
+      - ./scripts/entrypoint.sh:/entrypoint.sh:ro
 
 
     restart: unless-stopped
@@ -42,4 +42,4 @@ services:
     stdin_open: true
     tty: true
 
-    #command: entrypoint.sh 
+    command: entrypoint.sh 
