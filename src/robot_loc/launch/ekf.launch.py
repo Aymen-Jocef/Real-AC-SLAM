@@ -24,8 +24,8 @@ def generate_launch_description():
         Node(
             package='robot_localization',
             executable='ekf_node',
-            name='ekf_filter_node',
             namespace=namespace,
+            name='ekf_filter_node',
             output='screen',
             parameters=[ekf_config]
         )

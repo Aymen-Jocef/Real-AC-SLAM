@@ -75,7 +75,7 @@ class OdometryNode(Node):
         odom_trans.transform.translation.y = self.y
         odom_trans.transform.translation.z = 0.0
         odom_trans.transform.rotation = Quaternion(x=quat[0], y=quat[1], z=quat[2], w=quat[3])
-#        self.tf_broadcaster.sendTransform(odom_trans)
+        #self.tf_broadcaster.sendTransform(odom_trans)
 
         # Publish odometry
         odom_msg = Odometry()

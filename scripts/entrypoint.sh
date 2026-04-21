@@ -1,9 +1,6 @@
 #!/bin/bash
 set -e
 
-# ==============================
-# Source ROS
-# ==============================
 source /opt/ros/humble/setup.bash
 source /workspace/install/setup.bash
 
@@ -11,9 +8,6 @@ echo "=============================="
 echo " Starting robot nodes..."
 echo "=============================="
 
-# ==============================
-# Function to start node
-# ==============================
 start_node() {
     name=$1
     cmd=$2
@@ -35,20 +29,20 @@ start_node() {
 }
 
 # ==============================
-# Start TF static transforms FIRST
+# TF STATIC (namespaced)
 # ==============================
 
 start_node "tf_base" \
-"ros2 run tf2_ros static_transform_publisher 0 0 0 0 0 0 base_footprint base_link"
+"ros2 run tf2_ros static_transform_publisher 0 0 0 0 0 0 base_footprint base_link --ros-args --remap __ns:=/robot1"
 
 start_node "tf_imu" \
-"ros2 run tf2_ros static_transform_publisher 0 0 0 0 0 0 base_link imu_link"
+"ros2 run tf2_ros static_transform_publisher 0 0 0 0 0 0 base_link imu_link --ros-args --remap __ns:=/robot1"
 
 start_node "tf_laser" \
-"ros2 run tf2_ros static_transform_publisher 0.1 0 0 0 0 0 base_link laser"
+"ros2 run tf2_ros static_transform_publisher 0.1 0 0 0 0 0 base_link laser --ros-args --remap __ns:=/robot1"
 
 # ==============================
-# Start core nodes
+# CORE NODES
 # ==============================
 
 start_node "serial_bridge" \
@@ -66,16 +60,19 @@ start_node "madgwick" \
 --remap imu/data_raw:=/robot1/imu/mpu6050 \
 --remap imu/data:=/robot1/imu_filtered \
 -p use_mag:=false \
--p publish_tf:=false" 
+-p publish_tf:=false"
 
 start_node "ekf" \
 "ros2 launch robot_loc ekf.launch.py"
+
+start_node "rplidar" \
+"ros2 launch rplidar_ros rplidar_a2m12_launch.py"
+
+start_node "SLAM" \
+"ros2 launch robot_loc online_async.launch.py"
 
 echo "=============================="
 echo " All nodes started successfully"
 echo "=============================="
 
-# ==============================
-# Show logs live
-# ==============================
 tail -f /tmp/*.log
