@@ -152,7 +152,9 @@ RUN pip3 install --no-cache-dir  \
     scipy \
     pyyaml \
     transforms3d \
-    pyserial
+    pyserial \
+    networkx \
+    
 
 # Copy entrypoint and setup scripts with correct ownership
 COPY --chown=$USER_UID:$USER_GID docker/entrypoint.sh /entrypoint.sh
