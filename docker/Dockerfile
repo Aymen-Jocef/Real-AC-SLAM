@@ -154,7 +154,20 @@ RUN pip3 install --no-cache-dir  \
     transforms3d \
     pyserial \
     networkx \
-    
+    gpiozero \
+    lgpio
+
+# RUN python3 -c "import gpiozero.pins.lgpio as m; print(m.__file__)"
+#Patch gpiozero lgpio factory to use chip 0 (gpiochip4 is a symlink, not available in Docker) THIS IS FOR ROBOTINO
+RUN printf '%s\n' \
+    'import re, pathlib' \
+    'f = pathlib.Path("/usr/local/lib/python3.10/dist-packages/gpiozero/pins/lgpio.py")' \
+    'content = f.read_text()' \
+    'patched = re.sub(r"chip = 4 if \(self\._get_revision\(\) & 0xff0\) >> 4 == 0x17 else 0", "chip = int(os.environ.get(\"LGPIO_CHIP\", 0))", content)' \
+    'f.write_text(patched)' \
+    'assert "os.environ.get" in patched, "Patch failed!"' \
+    'print("Patched successfully")' \
+    > /tmp/patch_gpiozero.py && python3 /tmp/patch_gpiozero.py
 
 # Copy entrypoint and setup scripts with correct ownership
 COPY --chown=$USER_UID:$USER_GID docker/entrypoint.sh /entrypoint.sh

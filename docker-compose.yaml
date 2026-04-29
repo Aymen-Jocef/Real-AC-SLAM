@@ -11,14 +11,19 @@ services:
     user: "1000:1000"
 
     privileged: true
+    devices:
+      - /dev/gpiochip0:/dev/gpiochip0
     group_add:
       - dialout
       - video
       - "${I2C_GID:-988}"
+      - "986" # GPIO group
 
     environment:
       - ROS_DOMAIN_ID=42
       - RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+      - GPIOZERO_PIN_FACTORY=lgpio
+      - LGPIO_CHIP=0
       #- DISPLAY=${DISPLAY}
 
     volumes:
@@ -34,7 +39,8 @@ services:
       - ./log:/workspace/log:rw
 
       # Entrypoint script (mount for live editing without rebuild)
-      - ./scripts/entrypoint.sh:/entrypoint.sh:ro
+      #- ./scripts/entrypoint.sh:/entrypoint.sh:ro
+      
 
 
     restart: unless-stopped
@@ -42,4 +48,4 @@ services:
     stdin_open: true
     tty: true
 
-    command: entrypoint.sh 
+    #command: entrypoint.sh 
