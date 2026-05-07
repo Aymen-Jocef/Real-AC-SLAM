@@ -28,7 +28,7 @@ def generate_launch_description():
         description='Full path to the ROS2 parameters file to use for the slam_toolbox node')
     declare_namespace_cmd = DeclareLaunchArgument(
         'namespace',
-        default_value='robot1',
+        default_value='robot2',
         description='Robot namespace')
 
     # If the provided param file doesn't have slam_toolbox params, we must pass the
@@ -57,7 +57,7 @@ def generate_launch_description():
         namespace=namespace,
         output='screen',
         remappings=[('/map','map'),('/map_metadata','map_metadata'),
-                    ('/scan','/robot1/scan')]
+                    ('/scan','/robot2/scan')]
         )
     start_async_slam_toolbox_with_namespace = GroupAction(
      actions = [

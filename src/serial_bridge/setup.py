@@ -25,7 +25,9 @@ setup(
     entry_points={
         'console_scripts': [
             "serial_bridge = serial_bridge.serial_bridge_node:main",
-            "odometry = serial_bridge.odometry:main"
+            "odometry = serial_bridge.odometry:main",
+            "robotino_bridge = serial_bridge.robotino_bridge:main",
+            "odom_bridge = serial_bridge.odom_bridge:main",
         ],
     },
 )

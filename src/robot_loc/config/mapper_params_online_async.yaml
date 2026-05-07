@@ -1,4 +1,4 @@
-robot1: 
+robot2: 
   slam_toolbox:
     ros__parameters:
 

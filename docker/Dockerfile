@@ -148,16 +148,21 @@ RUN mkdir -p /workspace/src \
 
 
 RUN pip3 install --no-cache-dir  \
-    numpy \
+    "numpy<2.0" \
     scipy \
     pyyaml \
-    transforms3d \
+    "transforms3d>=0.4.2" \
     pyserial \
     networkx \
     gpiozero \
     lgpio
 
-# RUN python3 -c "import gpiozero.pins.lgpio as m; print(m.__file__)"
+# set the time in the container to be the same as the host
+RUN apt-get update && apt-get install -y --no-install-recommends tzdata \
+    && ln -sf /usr/share/zoneinfo/Africa/Algiers /etc/localtime \
+    && echo "Africa/Algiers" > /etc/timezone \
+    && rm -rf /var/lib/apt/lists/*
+
 #Patch gpiozero lgpio factory to use chip 0 (gpiochip4 is a symlink, not available in Docker) THIS IS FOR ROBOTINO
 RUN printf '%s\n' \
     'import re, pathlib' \
