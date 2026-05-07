@@ -24,7 +24,7 @@ services:
       - RMW_IMPLEMENTATION=rmw_fastrtps_cpp
       - GPIOZERO_PIN_FACTORY=lgpio
       - LGPIO_CHIP=0
-      #- DISPLAY=${DISPLAY}
+      - TZ=Africa/Algiers
 
     volumes:
       # Source code (live editing during development)
@@ -33,13 +33,16 @@ services:
       # Maps directory (persistent across container restarts)
       - ./maps:/workspace/maps:rw
 
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+
       # Build artifacts (persistent across container restarts)
       - ./build:/workspace/build:rw
       - ./install:/workspace/install:rw
       - ./log:/workspace/log:rw
 
       # Entrypoint script (mount for live editing without rebuild)
-      #- ./scripts/entrypoint.sh:/entrypoint.sh:ro
+      - ./scripts/entrypoint.sh:/entrypoint.sh:ro
       
 
 
@@ -48,4 +51,4 @@ services:
     stdin_open: true
     tty: true
 
-    #command: entrypoint.sh 
+    command: entrypoint.sh 

@@ -33,23 +33,23 @@ start_node() {
 # ==============================
 
 start_node "tf_base" \
-"ros2 run tf2_ros static_transform_publisher 0 0 0 0 0 0 base_footprint base_link --ros-args --remap __ns:=/robot1"
+"ros2 run tf2_ros static_transform_publisher 0 0 0 0 0 0 base_footprint base_link --ros-args --remap __ns:=/robot2"
 
 start_node "tf_imu" \
-"ros2 run tf2_ros static_transform_publisher 0 0 0 0 0 0 base_link imu_link --ros-args --remap __ns:=/robot1"
+"ros2 run tf2_ros static_transform_publisher 0 0 0 0 0 0 base_link imu_link --ros-args --remap __ns:=/robot2"
 
 start_node "tf_laser" \
-"ros2 run tf2_ros static_transform_publisher 0.1 0 0 0 0 0 base_link laser --ros-args --remap __ns:=/robot1"
+"ros2 run tf2_ros static_transform_publisher 0.1 0 0 0 0 0 base_link laser --ros-args --remap __ns:=/robot2"
 
 # ==============================
 # CORE NODES
 # ==============================
 
 start_node "serial_bridge" \
-"ros2 run serial_bridge serial_bridge"
+"ros2 run serial_bridge robotino_bridge"
 
 start_node "odometry" \
-"ros2 run serial_bridge odometry"
+"ros2 run serial_bridge odom_bridge"
 
 start_node "imu_node" \
 "ros2 launch ros2_mpu6050 ros2_mpu6050.launch.py"
@@ -57,8 +57,8 @@ start_node "imu_node" \
 start_node "madgwick" \
 "ros2 run imu_filter_madgwick imu_filter_madgwick_node \
 --ros-args \
---remap imu/data_raw:=/robot1/imu/mpu6050 \
---remap imu/data:=/robot1/imu_filtered \
+--remap imu/data_raw:=/robot2/imu/mpu6050 \
+--remap imu/data:=/robot2/imu_filtered \
 -p use_mag:=false \
 -p publish_tf:=false"
 
