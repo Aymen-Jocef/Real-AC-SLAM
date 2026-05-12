@@ -51,19 +51,19 @@ start_node "serial_bridge" \
 start_node "odometry" \
 "ros2 run serial_bridge odometry"
 
-start_node "imu_node" \
-"ros2 launch ros2_mpu6050 ros2_mpu6050.launch.py"
+# start_node "imu_node" \
+# "ros2 launch ros2_mpu6050 ros2_mpu6050.launch.py"
 
-start_node "madgwick" \
-"ros2 run imu_filter_madgwick imu_filter_madgwick_node \
---ros-args \
---remap imu/data_raw:=/robot1/imu/mpu6050 \
---remap imu/data:=/robot1/imu_filtered \
--p use_mag:=false \
--p publish_tf:=false"
+# start_node "madgwick" \
+# "ros2 run imu_filter_madgwick imu_filter_madgwick_node \
+# --ros-args \
+# --remap imu/data_raw:=/robot1/imu/mpu6050 \
+# --remap imu/data:=/robot1/imu_filtered \
+# -p use_mag:=false \
+# -p publish_tf:=false"
 
-start_node "ekf" \
-"ros2 launch robot_loc ekf.launch.py"
+# start_node "ekf" \
+# "ros2 launch robot_loc ekf.launch.py"
 
 start_node "rplidar" \
 "ros2 launch rplidar_ros rplidar_a2m12_launch.py"
