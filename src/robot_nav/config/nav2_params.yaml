@@ -1,4 +1,4 @@
-robot1:
+robot2:
   amcl:
     ros__parameters:
       use_sim_time: false
