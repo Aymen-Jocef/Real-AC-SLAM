@@ -56,8 +56,8 @@ def generate_launch_description():
         name='slam_toolbox',
         namespace=namespace,
         output='screen',
-        remappings=[('/map','map'),('/map_metadata','map_metadata'),
-                    ('/scan','/robot1/scan')]
+                remappings=[('/map','map'),('/map_metadata','map_metadata'),
+                                        ('/scan','/robot1/scan'),('/tf','/robot1/tf'),('/tf_static','/robot1/tf_static'),('tf','/robot1/tf'),('tf_static','/robot1/tf_static')]
         )
     start_async_slam_toolbox_with_namespace = GroupAction(
      actions = [

@@ -27,6 +27,7 @@ def generate_launch_description():
             namespace=namespace,
             name='ekf_filter_node',
             output='screen',
-            parameters=[ekf_config]
+            parameters=[ekf_config],
+            remappings=[('/tf', '/robot1/tf'), ('/tf_static', '/robot1/tf_static'), ('tf', '/robot1/tf'), ('tf_static', '/robot1/tf_static')]
         )
     ])

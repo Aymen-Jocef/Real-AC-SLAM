@@ -12,6 +12,16 @@ start_node() {
     name=$1
     cmd=$2
 
+    # Only append tf remappings to `ros2 run` commands (skip `ros2 launch`),
+    # and skip commands referencing excluded package directories.
+    if [[ "$cmd" == ros2\ run* && "$cmd" != *"multi-agent-system-AC-SLAM"* && "$cmd" != *"cpp_explorer"* ]]; then
+        if [[ "$cmd" == *"--ros-args"* ]]; then
+            cmd="$cmd --remap /tf:=/robot1/tf --remap /tf_static:=/robot1/tf_static --remap tf:=/robot1/tf --remap tf_static:=/robot1/tf_static"
+        else
+            cmd="$cmd --ros-args --remap /tf:=/robot1/tf --remap /tf_static:=/robot1/tf_static --remap tf:=/robot1/tf --remap tf_static:=/robot1/tf_static"
+        fi
+    fi
+
     echo "[STARTING] $name"
     bash -c "$cmd" > /tmp/${name}.log 2>&1 &
 
@@ -51,19 +61,19 @@ start_node "serial_bridge" \
 start_node "odometry" \
 "ros2 run serial_bridge odometry"
 
-# start_node "imu_node" \
-# "ros2 launch ros2_mpu6050 ros2_mpu6050.launch.py"
+start_node "imu_node" \
+"ros2 launch ros2_mpu6050 ros2_mpu6050.launch.py"
 
-# start_node "madgwick" \
-# "ros2 run imu_filter_madgwick imu_filter_madgwick_node \
-# --ros-args \
-# --remap imu/data_raw:=/robot1/imu/mpu6050 \
-# --remap imu/data:=/robot1/imu_filtered \
-# -p use_mag:=false \
-# -p publish_tf:=false"
+start_node "madgwick" \
+"ros2 run imu_filter_madgwick imu_filter_madgwick_node \
+--ros-args \
+--remap imu/data_raw:=/robot1/imu/mpu6050 \
+--remap imu/data:=/robot1/imu_filtered \
+-p use_mag:=false \
+-p publish_tf:=false"
 
-# start_node "ekf" \
-# "ros2 launch robot_loc ekf.launch.py"
+start_node "ekf" \
+"ros2 launch robot_loc ekf.launch.py"
 
 start_node "rplidar" \
 "ros2 launch rplidar_ros rplidar_a2m12_launch.py"
