@@ -12,6 +12,16 @@ start_node() {
     name=$1
     cmd=$2
 
+    # Only append tf remappings to `ros2 run` commands (skip `ros2 launch`),
+    # and skip commands referencing excluded package directories.
+    if [[ "$cmd" == ros2\ run* && "$cmd" != *"multi-agent-system-AC-SLAM"* && "$cmd" != *"cpp_explorer"* ]]; then
+        if [[ "$cmd" == *"--ros-args"* ]]; then
+            cmd="$cmd --remap /tf:=/robot2/tf --remap /tf_static:=/robot2/tf_static --remap tf:=/robot2/tf --remap tf_static:=/robot2/tf_static"
+        else
+            cmd="$cmd --ros-args --remap /tf:=/robot2/tf --remap /tf_static:=/robot2/tf_static --remap tf:=/robot2/tf --remap tf_static:=/robot2/tf_static"
+        fi
+    fi
+
     echo "[STARTING] $name"
     bash -c "$cmd" > /tmp/${name}.log 2>&1 &
 
