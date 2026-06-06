@@ -12,7 +12,7 @@ class OdometryNode(Node):
         super().__init__('odometry_node')
 
         # Robot parameters
-        self.wheel_radius = 0.0365  # in meters
+        self.wheel_radius = 0.0375  # in meters
         self.wheel_base = 0.345    # distance between wheels in meters
 
         self.left_rpm = 0.0
@@ -69,8 +69,8 @@ class OdometryNode(Node):
         # Publish transform
         odom_trans = TransformStamped()
         odom_trans.header.stamp = current_time.to_msg()
-        odom_trans.header.frame_id = 'odom'
-        odom_trans.child_frame_id = 'base_footprint'
+        odom_trans.header.frame_id = 'robot1/odom'
+        odom_trans.child_frame_id = 'robot1/base_footprint'
         odom_trans.transform.translation.x = self.x
         odom_trans.transform.translation.y = self.y
         odom_trans.transform.translation.z = 0.0
@@ -80,8 +80,8 @@ class OdometryNode(Node):
         # Publish odometry
         odom_msg = Odometry()
         odom_msg.header.stamp = current_time.to_msg()
-        odom_msg.header.frame_id = 'odom'
-        odom_msg.child_frame_id = 'base_footprint'
+        odom_msg.header.frame_id = 'robot1/odom'
+        odom_msg.child_frame_id = 'robot1/base_footprint'
         odom_msg.pose.pose.position.x = self.x
         odom_msg.pose.pose.position.y = self.y
         odom_msg.pose.pose.position.z = 0.0

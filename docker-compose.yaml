@@ -20,7 +20,8 @@ services:
       - "986" # GPIO group
 
     environment:
-      - ROS_DOMAIN_ID=42
+      - ROS_DOMAIN_ID=1
+      - FASTRTPS_DEFAULT_PROFILES_FILE=/home/ac-slam/ros2_ws_docker/scripts/fastrtps_profiles.xml
       - RMW_IMPLEMENTATION=rmw_fastrtps_cpp
       - GPIOZERO_PIN_FACTORY=lgpio
       - LGPIO_CHIP=0

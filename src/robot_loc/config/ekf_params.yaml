@@ -21,7 +21,7 @@
                   false, false, false]
 
     publish_tf: true
-    map_frame: map
-    odom_frame: odom
-    base_link_frame: base_link
-    world_frame: odom
+    map_frame: robot1/map
+    odom_frame: robot1/odom
+    base_link_frame: robot1/base_link
+    world_frame: robot1/odom

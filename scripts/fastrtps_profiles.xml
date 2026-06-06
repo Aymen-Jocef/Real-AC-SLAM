@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+
+  <transport_descriptors>
+    <transport_descriptor>
+      <transport_id>udp_transport</transport_id>
+      <type>UDPv4</type>
+      <sendBufferSize>1048576</sendBufferSize>
+      <receiveBufferSize>4194304</receiveBufferSize>
+    </transport_descriptor>
+  </transport_descriptors>
+
+  <participant profile_name="default_profile" is_default_profile="true">
+    <rtps>
+      <userTransports>
+        <transport_id>udp_transport</transport_id>
+      </userTransports>
+      <useBuiltinTransports>false</useBuiltinTransports>
+      <builtin>
+        <discovery_config>
+          <leaseDuration>
+            <sec>20</sec><nanosec>0</nanosec>
+          </leaseDuration>
+          <leaseDuration>
+            <sec>5</sec><nanosec>0</nanosec>
+          </leaseDuration>
+        </discovery_config>
+        <!-- Switch from multicast to unicast discovery -->
+        <metatrafficUnicastLocatorList>
+          <locator><udpv4/></locator>
+        </metatrafficUnicastLocatorList>
+        <initialPeersList>
+          <!-- Add the IPs of your other machines here -->
+          <locator><udpv4><address>10.254.19.211</address></udpv4></locator>
+          <locator><udpv4><address>10.254.19.167</address></udpv4></locator>
+          <!-- <locator><udpv4><address>10.254.19.74</address></udpv4></locator> -->
+        </initialPeersList>
+      </builtin>
+    </rtps>
+  </participant>
+
+</profiles>

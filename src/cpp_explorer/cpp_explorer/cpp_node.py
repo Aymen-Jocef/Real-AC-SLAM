@@ -107,13 +107,13 @@ class CPPNavExecutor(Node):
 
         goal = ComputePathToPose.Goal()
         start = PoseStamped()
-        start.header.frame_id = 'map'
+        start.header.frame_id = f'{self.robot_namespace}/map'
         start.header.stamp = self.get_clock().now().to_msg()
         start.pose.orientation.w = 1.0
         goal.start = start
 
         goal.goal = PoseStamped()
-        goal.goal.header.frame_id = 'map'
+        goal.goal.header.frame_id = f'{self.robot_namespace}/map'
         goal.goal.pose.position.x = x
         goal.goal.pose.position.y = y
         goal.goal.pose.orientation.z = np.sin(yaw/2)
@@ -146,7 +146,7 @@ class CPPNavExecutor(Node):
 
 
         goal_msg = NavigateToPose.Goal()
-        goal_msg.pose.header.frame_id = 'map'
+        goal_msg.pose.header.frame_id = f'{self.robot_namespace}/map'
         goal_msg.pose.header.stamp = self.get_clock().now().to_msg()
         goal_msg.pose.pose.position.x = x
         goal_msg.pose.pose.position.y = y

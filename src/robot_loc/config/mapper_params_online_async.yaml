@@ -11,9 +11,9 @@ robot1:
       ceres_loss_function: None
 
       # ROS Parameters
-      odom_frame: odom
-      map_frame: map
-      base_frame: base_link
+      odom_frame: robot1/odom
+      map_frame: robot1/map
+      base_frame: robot1/base_link
       scan_topic: scan
       use_map_saver: false
       mode:  mapping 
@@ -49,7 +49,7 @@ robot1:
       link_match_minimum_response_fine: 0.1  
       link_scan_maximum_distance: 1.5
       loop_search_maximum_distance: 12.0  # 3.0
-      do_loop_closing: true 
+      do_loop_closing: false 
       loop_match_minimum_chain_size: 5 #10          
       loop_match_maximum_variance_coarse: 3.0  
       loop_match_minimum_response_coarse: 0.3 #0.35    
