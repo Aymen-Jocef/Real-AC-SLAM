@@ -74,26 +74,12 @@ Clone the repository
 git clone https://github.com/Aymen-Jocef/Real-AC-SLAM
 ```
 
-Build
-
-```bash
-cd ~/Real-AC-SLAM
-
-colcon build --symlink-install
-
-source install/setup.bash
-```
-
----
-
-# Launch Sequence
-
-## 1. Build the docker container
+ Build the docker container
 ```bash
 docker compose build
 ```
 
-## 1. Start the robot
+ Start the container
 
 ```bash
 docker compose up 
@@ -113,6 +99,21 @@ This script is responsible for:
 3. Configuring environment variables
 4. Launching all required ROS 2 nodes
 5. Keeping the container running
+
+Enter the running container 
+```bash
+docker exec -it ac-slam bashh
+```
+
+Build
+
+```bash
+cd ~/Real-AC-SLAM
+
+colcon build
+
+source install/setup.bash
+```
 
 ---
 
