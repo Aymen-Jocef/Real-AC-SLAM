@@ -91,4 +91,4 @@ Docker compose up
 
 | Repository | Description |
 |------------|-------------|
-| [Platform-AC-SLAM](https://github.com/TheHiCore/Platform-AC-SLAM) | Hardware platform to visualize the map generation on the borwser. |
+| [Platform-AC-SLAM](https://github.com/TheHiCore/Platform-AC-SLAM) | platform to visualize the map generation on the borwser. |
