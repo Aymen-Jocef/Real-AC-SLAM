@@ -1,5 +1,5 @@
 # Real-AC-SLAM
-Implemation of active collaborative SLAM application using mulitple type of mobile robots. 
+**Real-AC-SLAM** is the real-world implementation of the **Autonomous Collaborative SLAM (AC-SLAM)** project. It provides a complete ROS 2 software stack for autonomous exploration, navigation, localization, and collaborative mapping using multiple mobile robots. The platform supports both a custom differential-drive robot and the Robotino omnidirectional robot, enabling robots to independently explore unknown environments while collaboratively building a shared global occupancy map.
 
 ### Differential Drive Robot
 
@@ -153,3 +153,20 @@ while ROS performs
 - localization
 - navigation
 - exploration
+
+---
+
+# Contributors
+
+| | |
+|:---:|:---:|
+| <a href="https://github.com/TheHiCore"><img src="https://github.com/TheHiCore.png" width="100"/><br><b>TheHiCore</b></a> | <a href="https://github.com/Aymen-Jocef"><img src="https://github.com/Aymen-Jocef.png" width="100"/><br><b>Aymen Jocef</b></a> |
+
+---
+
+# Related Repositories
+
+| Repository | Description |
+|------------|-------------|
+| [Platform-AC-SLAM](https://github.com/TheHiCore/Platform-AC-SLAM) | Platform to visualize the map generation in the browser. |
+
