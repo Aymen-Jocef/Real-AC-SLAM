@@ -84,7 +84,7 @@ Docker compose up
 
 | | |
 |:---:|:---:|
-| <a href="https://github.com/TheHiCore"><img src="https://github.com/TheHiCore.png" width="100"/><br><b>TheHiCore</b></a> | <a href="https://github.com/Aymen-Meddas"><img src="https://github.com/Aymen-Meddas.png" width="100"/><br><b>Aymen Meddas</b></a> |
+| <a href="https://github.com/TheHiCore"><img src="https://github.com/TheHiCore.png" width="100"/><br><b>TheHiCore</b></a> | <a href="https://github.com/Aymen-Jocef"><img src="https://github.com/Aymen-Jocef.png" width="100"/><br><b>Aymen Jocef</b></a> |
 
 ---
 # Related Repositories
