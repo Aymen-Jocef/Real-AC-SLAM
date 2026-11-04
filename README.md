@@ -168,3 +168,8 @@ while ROS performs
 |------------|-------------|
 | [Platform-AC-SLAM](https://github.com/TheHiCore/Platform-AC-SLAM) | Platform to visualize the map generation in the browser. |
 
+
+# Demo video
+
+[![Demo video](https://img.youtube.com/vi/9QH4egxqPHk/hqdefault.jpg)](https://www.youtube.com/watch?v=9QH4egxqPHk)
+
